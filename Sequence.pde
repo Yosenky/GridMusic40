@@ -117,8 +117,16 @@ class Sequence {
         tempDur = 1.25 * duration[i-1];
         time += tempDur;
       }
-      out.playNote(time, 1.25*duration[i], new ToneInstrument((float) PitchRep.mtof(melody[i]), amplitude, out, adsr, wf));
+      float noteFrequency = (float)PitchRep.mtof(melody[i]);
+      out.playNote(time, 1.25*duration[i], new ToneInstrument(noteFrequency, amplitude, out, adsr, wf));
       time += 1.25 * duration[i];
+      
+      // Drawing the plot of the frequencies
+      plot = getPlot();
+      plot.getXAxis().getAxisLabel().setText("Note");
+      plot.getYAxis().getAxisLabel().setText("Frequency Value");
+      plot.addPoint(i, noteFrequency);
+      plotActivated = true;
     }
 
     // resume playback

@@ -32,6 +32,7 @@ String BRWN = "Brownian Noise";
 String LYRS = "Layers of noise";
 String RESIZE = "Resize";
 String NRANG = "Noise Range";
+String PNK = "Pink Noise";
 
 
 
@@ -288,6 +289,7 @@ void setupControls() {
   
   controlP5.addSlider(LYRS   , 1      , 20     , 1    , height/80  , width/10, height/36).setGroup(l7).setFont(UIFont).setNumberOfTickMarks(20).showTickMarks(false);
   controlP5.addBang(controlP5, BRWN   , BRWN   , 0    , height*4/80, width/48, width/48).setGroup(l7).setFont(SmallerUIFont);
+  controlP5.addBang(controlP5, PNK    , PNK    , width*3/48    , height*4/80, width/48, width/48).setGroup(l7).setFont(SmallerUIFont);
   controlP5.addSlider(NRANG  , 1      , 5      , 1    , height*9/80, width/10, height/36).setGroup(l7).setFont(UIFont).setNumberOfTickMarks(5).showTickMarks(false);
   //controlP5.addBang(controlP5, RESIZE, RESIZE,  0     , height*8/80, width/48, width/48).setGroup(l7).setFont(SmallerUIFont);
 }
@@ -376,6 +378,13 @@ void controlEvent(ControlEvent theEvent) {
       int i = 0;
       while(i < numberOfLayers){
        noiseG.generateBrownianNoise(noiseRange);
+        i++;
+      }
+    }else if (theEvent.getController().getName().equals(PNK)) { // Pink Noise
+      grid.clear();
+      int i = 0;
+      while(i < numberOfLayers){
+       noiseG.generatePinkNoise(70);
         i++;
       }
     }else if (theEvent.getController().getName().equals(HPYBD)) { //Happy Birthday
