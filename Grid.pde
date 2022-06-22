@@ -201,6 +201,8 @@ public class Grid {
   
 
   void play() {
+    //plotController.clearPlot();
+    
     // check the grid
     buildSequence();
 
@@ -209,10 +211,13 @@ public class Grid {
     
     seq.playSequence(out, 1.0);
     
+    
   }
 
   // Overloading play to allow for noiseRange and microtones
   void play(float noiseRange) {
+   // plotController.clearPlot();
+    
     // check the grid
     buildSequence();
 

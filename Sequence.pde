@@ -45,7 +45,6 @@ class Sequence {
   // Maybe someday some harmony
   Scale scale;
   
-  GPlot plot;
 
   // Its possible I have too many constructors, but I haven't the heart to kill them off yet
 
@@ -122,11 +121,7 @@ class Sequence {
       time += 1.25 * duration[i];
       
       // Drawing the plot of the frequencies
-      plot = getPlot();
-      plot.getXAxis().getAxisLabel().setText("Note");
-      plot.getYAxis().getAxisLabel().setText("Frequency Value");
       plot.addPoint(i, noteFrequency);
-      plotActivated = true;
     }
 
     // resume playback
@@ -157,11 +152,7 @@ class Sequence {
       out.playNote(time, 1.25*duration[i], new ToneInstrument(randomFrequency, amplitude, out, adsr, wf));
       
       // Drawing the plot of the frequencies
-      plot = getPlot();
-      plot.getXAxis().getAxisLabel().setText("Note");
-      plot.getYAxis().getAxisLabel().setText("Frequency Value");
       plot.addPoint(i, randomFrequency);
-      plotActivated = true;
       
       
       time += 1.25 * duration[i];

@@ -80,6 +80,7 @@ int w,h;
 GPlot plot;
 boolean plotActivated = false;
 NoiseGeneration noiseG;
+PlotController plotController;
 
 void setup() {
   size(1920,1080);
@@ -104,6 +105,8 @@ void setup() {
   plot = new GPlot(this,width*20/40, height*22/40, width*15/40, height*16/40);
   
   noiseG = new NoiseGeneration(grid);
+  
+  PlotController plotController = new PlotController();
 
 }
 
@@ -122,15 +125,12 @@ void pre(){
 void draw() {
   background(150);
   controlP5.draw();
-  if(plotActivated){
-    plot.defaultDraw();
-  }
+  plot.defaultDraw();
+  plot.getXAxis().getAxisLabel().setText("Note");
+  plot.getYAxis().getAxisLabel().setText("Frequency Value");
 }
 
-//Returns the plot
-GPlot getPlot(){
-  return plot;
-}
+
 
 void happyBirthday() {
   // hardcoded pitches and durations for "Happy Birthday!"

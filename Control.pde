@@ -39,6 +39,8 @@ String PNK = "Pink Noise";
 int numberOfLayers = 1;
 
 String TESTING = "TEST";
+
+
 void setupControls() {
   //initailizing the controlP5 object for use with all UI features below
   controlP5 = new ControlP5(this);
@@ -329,6 +331,7 @@ public void wave(int theValue) {
 
 // Event handler for all other getControllers
 void controlEvent(ControlEvent theEvent) {
+  PlotController plotController = new PlotController();
   NoiseGeneration noiseG = new NoiseGeneration(grid);
   if (theEvent.isController()) {
     Slider complen=(Slider)controlP5.getController(CMPLN);
@@ -336,6 +339,7 @@ void controlEvent(ControlEvent theEvent) {
       out.setTempo(controlP5.getController(TMP).getValue());
     }
     if (theEvent.getController().getName() == PLY) {
+      plotController.clearPlot();
       grid.play();
     } else if (theEvent.getController().getName() == EXP) {
       Slider vcs = (Slider)controlP5.getController(VCS);    // number of voices
@@ -369,6 +373,7 @@ void controlEvent(ControlEvent theEvent) {
       grid.clear();
       grid.randomIntervalWalkMelody();
     } else if (theEvent.getController().getName().equals(BRWN)) { // Brownian Noise
+      plotController.clearPlot();
       grid.clear();
       mode(2); // Sets mode to pentatonic
       RadioButton b  = (RadioButton) controlP5.getGroup(MOD); // Grabs radio button
@@ -381,6 +386,7 @@ void controlEvent(ControlEvent theEvent) {
         i++;
       }
     }else if (theEvent.getController().getName().equals(PNK)) { // Pink Noise
+      plotController.clearPlot();
       grid.clear();
       int i = 0;
       while(i < numberOfLayers){
@@ -390,6 +396,7 @@ void controlEvent(ControlEvent theEvent) {
     }else if (theEvent.getController().getName().equals(HPYBD)) { //Happy Birthday
       happyBirthday();
     } else if (theEvent.getController().getName() == CLR) { //Clear
+      plotController.clearPlot();
       grid.clear();
     } else if (theEvent.getController().getName() == CMPLN) {
       grid.clear();
