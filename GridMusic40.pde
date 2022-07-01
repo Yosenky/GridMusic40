@@ -1,3 +1,6 @@
+import netP5.*;
+import oscP5.*;
+
 import grafica.*;  // For graphing
 
 import ddf.minim.*;
@@ -81,9 +84,12 @@ GPlot plot;
 boolean plotActivated = false;
 NoiseGeneration noiseG;
 PlotController plotController;
+OscP5 oscP5;
+NetAddress myRemoteLocation;
+NetAddress gameOfLifeCompositionsAddress;
 
 void setup() {
-  size(1920,1080);
+  size(900,600);
   w = width;
   h = height;
   // a few Grid defaults
@@ -107,6 +113,11 @@ void setup() {
   noiseG = new NoiseGeneration(grid);
   
   PlotController plotController = new PlotController();
+  
+  // OscP5 setup
+  oscP5 = new OscP5(this, 13000);
+  myRemoteLocation = new NetAddress("127.0.0.1", 13000); // IP address and port number for this program
+  gameOfLifeCompositionsAddress = new NetAddress("127.0.1.1", 12000); // IP address and port number for the game of life compositions program
 
 }
 

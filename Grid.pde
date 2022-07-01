@@ -336,4 +336,11 @@ public class Grid {
   Block[][] getGrid(){
     return grid;
   }
+  
+  // Sends info to the GameOfLifeCompositions program
+  void sendInfo(){
+    OscMessage myMessage = new OscMessage("/test");
+    myMessage.add(123);
+    oscP5.send(myMessage, gameOfLifeCompositionsAddress);
+  }
 }

@@ -33,6 +33,7 @@ String LYRS = "Layers of noise";
 String RESIZE = "Resize";
 String NRANG = "Noise Range";
 String PNK = "Pink Noise";
+String STGOL = "Send to GameOfLife";
 
 
 
@@ -223,12 +224,11 @@ void setupControls() {
   // 
   // Add buttons to SAVE section
   // addButton constructor syntax (object, index, name, value, xCoord, yCoord, width, height)
-  controlP5.addButton(controlP5, MEL   , MEL   , 1.0, 0         , width/96   , width*3/36, height*2/36).setGroup(l4);
-  controlP5.addButton(controlP5, SAVEXP, SAVEXP, 2.0, width*7/72, width/96   , width*3/36, height*2/36).setGroup(l4);
-  controlP5.addButton(controlP5, "LOAD", "LOAD", 1.0, 0         , height*3/36, width*3/36, height*2/36).setGroup(l4);
-  controlP5.addTextfield("FILE").setPosition(width*7/72,height*3/36).setText("song.seq").setSize(width*3/36,height/36).setGroup(l4);
-  
-  
+  //controlP5.addButton(controlP5, MEL   , MEL   , 1.0, 0         , width/96   , width*3/36, height*2/36).setGroup(l4);
+  //controlP5.addButton(controlP5, SAVEXP, SAVEXP, 2.0, width*7/72, width/96   , width*3/36, height*2/36).setGroup(l4);
+  //controlP5.addButton(controlP5, "LOAD", "LOAD", 1.0, 0         , height*3/36, width*3/36, height*2/36).setGroup(l4);
+  //controlP5.addTextfield("FILE").setPosition(width*7/72,height*3/36).setText("song.seq").setSize(width*3/36,height/36).setGroup(l4);
+  controlP5.addBang(controlP5, STGOL, STGOL   , 0         , width/96   , width*3/36, height*2/36).setGroup(l4);
   //
   // GROUP L5
   //
@@ -437,6 +437,9 @@ void controlEvent(ControlEvent theEvent) {
     } else if (theEvent.getController().getName() == WGHTR) {
       grid.clear();
       grid.randomWeightedInterval();
+    } else if (theEvent.getController().getName() == STGOL) {
+      println("SENDING!");
+      grid.sendInfo();
     }
   }
 }
