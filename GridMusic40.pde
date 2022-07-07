@@ -85,11 +85,11 @@ boolean plotActivated = false;
 NoiseGeneration noiseG;
 PlotController plotController;
 OscP5 oscP5;
-NetAddress myRemoteLocation;
-NetAddress gameOfLifeCompositionsAddress;
+NetAddress myRemoteLocation; // Net address for this program
+NetAddress gameOfLifeCompositionsAddress; // Net address for game of life
 
 void setup() {
-  size(900,600);
+  size(1800,950);
   w = width;
   h = height;
   // a few Grid defaults
@@ -120,18 +120,6 @@ void setup() {
   gameOfLifeCompositionsAddress = new NetAddress("127.0.1.1", 12000); // IP address and port number for the game of life compositions program
 
 }
-
-
-//Method for auto resizing UI when window size changes
-/*
-void pre(){
- if(w != width || h != height){
-   w = width;
-   h = height;
-   setupControls();
- }
-}
-*/
 
 void draw() {
   background(150);

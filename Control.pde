@@ -112,42 +112,93 @@ void setupControls() {
   color activeToggleColor = color(14,220,55);
   color inactiveToggleColor = color(0,0,0);
   color hoveredToggleColor = color(80,80,80);
-  // IGNORE THAT THEY ARE DEPRECATED, MUST USE ANYWAYS
-  controlP5.addToggle(CNCT, true, width*2/72, height*7/80, width/36, width/36)
-           .setGroup(l1)
-           .setFont(UIFont)
-           .setColorForeground(hoveredToggleColor)
-           .setColorBackground(inactiveToggleColor)
-           .setColorActive(activeToggleColor);
-  controlP5.addToggle(REV, false, width*6/72, height*7/80, width/36, width/36)
-           .setGroup(l1)
-           .setFont(UIFont)
-           .setColorForeground(hoveredToggleColor)
-           .setColorBackground(inactiveToggleColor)
-           .setColorActive(activeToggleColor);
-  /*
-  BREAKING BREAKING BREAKING BREAKING
-  controlP5.addToggle(controlP5, CNCT, CNCT, true, width*2/72, height*8/80, width/36, width/36)
-           .setGroup(l1)
-           .setFont(UIFont)
-           .setColorForeground(hoveredToggleColor)
-           .setColorBackground(inactiveToggleColor)
-           .setColorActive(activeToggleColor);
-           
-  controlP5.addToggle(controlP5, REV, REV, false, width*6/72, height*8/80, width/36, width/36)
-           .setGroup(l1)
-           .setFont(UIFont)
-           .setColorForeground(hoveredToggleColor)
-           .setColorBackground(inactiveToggleColor)
-           .setColorActive(activeToggleColor);
-  */
+
+  controlP5.addToggle(CNCT)
+             .setBroadcast(false)
+             .setValue( true)
+             .setPosition(width*2/72, height*7/80)
+             .setSize(width/36,width/36)
+             .setGroup(l1)
+             .setColorForeground(hoveredToggleColor)
+             .setColorBackground(inactiveToggleColor)
+             .setColorActive(activeToggleColor)
+             .setFont(UIFont)
+             .setBroadcast(true);
+
+  controlP5.addToggle(REV)
+             .setBroadcast(false)
+             .setValue(false)
+             .setPosition(width*6/72, height*7/80)
+             .setSize(width/36,width/36)
+             .setGroup(l1)
+             .setColorForeground(hoveredToggleColor)
+             .setColorBackground(inactiveToggleColor)
+             .setColorActive(activeToggleColor)
+             .setFont(UIFont)
+             .setBroadcast(true);
   
-  // Constructor format for slider(name, minimumValue, maximumValue, defaultValue, xCoord, yCoord, width, height)
-  controlP5.addSlider(VCS    , 1 , 4  , 2    , 0, height*14/80, width/10, height/36).setGroup(l1).setFont(UIFont).setNumberOfTickMarks(4).showTickMarks(false);
-  controlP5.addSlider(EXPLEN , 1 , 240, 120  , 0, height*17/80, width/10, height/36).setGroup(l1).setFont(UIFont).setNumberOfTickMarks(240).showTickMarks(false);
-  controlP5.addSlider(MAXSHFT, 0 , 16 , 8    , 0, height*20/80, width/10, height/36).setGroup(l1).setFont(UIFont).setNumberOfTickMarks(17).showTickMarks(false);
-  controlP5.addSlider(CMPLN  , 8 , 100 , 8   , 0, height*23/80, width/10, height/36).setGroup(l1).setFont(UIFont).setNumberOfTickMarks(93).showTickMarks(false);
-  controlP5.addSlider(TMP    , 50, 150, tempo, 0, height*26/80, width/10, height/36).setGroup(l1).setFont(UIFont).setNumberOfTickMarks(101).showTickMarks(false);
+  // Voices Slider
+  controlP5.addSlider(VCS)
+           .setBroadcast(false)
+           .setPosition(0, height*14/80)
+           .setSize(width/10, height/36)
+           .setRange(1 , 4)
+           .setValue(2)
+           .setGroup(l1)
+           .setFont(UIFont)
+           .setNumberOfTickMarks(4)
+           .showTickMarks(false)
+           .setBroadcast(true);
+             
+   // Expansion length slider
+   controlP5.addSlider(EXPLEN)
+             .setBroadcast(false)
+             .setPosition(0, height*17/80)
+             .setSize(width/10, height/36)
+             .setRange(1,240)
+             .setValue(120)
+             .setGroup(l1)
+             .setFont(UIFont)
+             .setNumberOfTickMarks(240)
+             .showTickMarks(false)
+             .setBroadcast(true);
+             
+  // Max shift slider
+   controlP5.addSlider(MAXSHFT)
+             .setBroadcast(false)
+             .setPosition(0, height*20/80)
+             .setSize(width/10, height/36)
+             .setRange(0 , 16)
+             .setValue(8)
+             .setGroup(l1)
+             .setFont(UIFont)
+             .setNumberOfTickMarks(17)
+             .showTickMarks(false)
+             .setBroadcast(true);  
+  // Composition length slider
+   controlP5.addSlider(CMPLN)
+             .setBroadcast(false)
+             .setPosition(0, height*23/80)
+             .setSize(width/10, height/36)
+             .setRange(8 , 100)
+             .setValue(8)
+             .setGroup(l1)
+             .setFont(UIFont)
+             .setNumberOfTickMarks(93)
+             .showTickMarks(false)
+             .setBroadcast(true);  
+  // Tempo slider
+   controlP5.addSlider(TMP)
+             .setBroadcast(false)
+             .setPosition(0, height*26/80)
+             .setSize(width/10, height/36)
+             .setRange(50, 150)
+             .setValue(tempo)
+             .setGroup(l1)
+             .setFont(UIFont)
+             .setNumberOfTickMarks(101)
+             .showTickMarks(false)
+             .setBroadcast(true);
   
   
   //
@@ -212,10 +263,39 @@ void setupControls() {
   //
   // Add generators to GEN section
   // Constructor Format(Object, index, name, xCoord, yCoord, width, height)
-  controlP5.addBang(controlP5, RND    , RND    , 0             , height/80  , width/48, width/48).setGroup(l3).setFont(SmallerUIFont);
-  controlP5.addBang(controlP5, RWLK   , RWLK   , width*3/72    , height/80  , width/48, width/48).setGroup(l3).setFont(SmallerUIFont);
-  controlP5.addBang(controlP5, RWLKINT, RWLKINT, width*7/72    , height/80  , width/48, width/48).setGroup(l3).setFont(SmallerUIFont);
-  controlP5.addBang(controlP5, WGHTR  , WGHTR  , 0             , height*6/80, width/48, width/48).setGroup(l3).setFont(SmallerUIFont);
+  
+  // Random generation
+  controlP5.addBang(RND)
+           .setBroadcast(false)
+           .setPosition(0             , height/80)
+           .setSize(width/48, width/48)
+           .setGroup(l3)
+           .setFont(SmallerUIFont)
+           .setBroadcast(true);   
+  // Random walking generation
+  controlP5.addBang(RWLK)
+           .setBroadcast(false)
+           .setPosition(width*3/72, height/80)
+           .setSize(width/48, width/48)
+           .setGroup(l3)
+           .setFont(SmallerUIFont)
+           .setBroadcast(true);  
+  // Random walking interval generation
+  controlP5.addBang(RWLKINT)
+           .setBroadcast(false)
+           .setPosition(width*7/72, height/80)
+           .setSize(width/48, width/48)
+           .setGroup(l3)
+           .setFont(SmallerUIFont)
+           .setBroadcast(true);   
+  // Weighted random generation
+  controlP5.addBang(WGHTR)
+           .setBroadcast(false)
+           .setPosition(0, height*6/80)
+           .setSize(width/48, width/48)
+           .setGroup(l3)
+           .setFont(SmallerUIFont)
+           .setBroadcast(true); 
   //controlP5.addBang(controlP5, HPYBD  , HPYBD  , 0             , height*8/80, width/36, width/36).setGroup(l3).setFont(UIFont);  // Happy Birthday Button
   
   
@@ -228,7 +308,15 @@ void setupControls() {
   //controlP5.addButton(controlP5, SAVEXP, SAVEXP, 2.0, width*7/72, width/96   , width*3/36, height*2/36).setGroup(l4);
   //controlP5.addButton(controlP5, "LOAD", "LOAD", 1.0, 0         , height*3/36, width*3/36, height*2/36).setGroup(l4);
   //controlP5.addTextfield("FILE").setPosition(width*7/72,height*3/36).setText("song.seq").setSize(width*3/36,height/36).setGroup(l4);
-  controlP5.addBang(controlP5, STGOL, STGOL   , 0         , width/96   , width*3/36, height*2/36).setGroup(l4);
+  
+  // Send to game of life
+  controlP5.addBang(STGOL)
+           .setBroadcast(false)
+           .setPosition(0, width/96)
+           .setSize(width*3/36, height*2/36)
+           .setGroup(l4)
+           .setFont(UIFont)
+           .setBroadcast(true);   
   //
   // GROUP L5
   //
@@ -288,12 +376,46 @@ void setupControls() {
   // GROUP L7
   //
   // Add controls to Noise Generation section - jrkm
-  
-  controlP5.addSlider(LYRS   , 1      , 20     , 1    , height/80  , width/10, height/36).setGroup(l7).setFont(UIFont).setNumberOfTickMarks(20).showTickMarks(false);
-  controlP5.addBang(controlP5, BRWN   , BRWN   , 0    , height*4/80, width/48, width/48).setGroup(l7).setFont(SmallerUIFont);
-  controlP5.addBang(controlP5, PNK    , PNK    , width*3/48    , height*4/80, width/48, width/48).setGroup(l7).setFont(SmallerUIFont);
-  controlP5.addSlider(NRANG  , 1      , 5      , 1    , height*9/80, width/10, height/36).setGroup(l7).setFont(UIFont).setNumberOfTickMarks(5).showTickMarks(false);
-  //controlP5.addBang(controlP5, RESIZE, RESIZE,  0     , height*8/80, width/48, width/48).setGroup(l7).setFont(SmallerUIFont);
+  // Number of noise layers slider
+  controlP5.addSlider(LYRS)
+            .setBroadcast(false)
+            .setPosition(0, 0)
+            .setSize(width/10, height/36)
+            .setRange(1, 20)
+            .setValue(1)
+            .setGroup(l7)
+            .setFont(UIFont)
+            .setNumberOfTickMarks(20)
+            .showTickMarks(false)
+            .setBroadcast(true);    
+  // Brownian noise generation           
+  controlP5.addBang(BRWN)
+           .setBroadcast(false)
+           .setPosition(0, height*4/80)
+           .setSize(width/48, width/48)
+           .setGroup(l7)
+           .setFont(SmallerUIFont)
+           .setBroadcast(true);
+  // Pink noise generation        
+  controlP5.addBang(PNK)
+           .setBroadcast(false)
+           .setPosition(width*3/48, height*4/80)
+           .setSize(width/48, width/48)
+           .setGroup(l7)
+           .setFont(SmallerUIFont)
+           .setBroadcast(true);              
+  // Noise range slider    
+  controlP5.addSlider(NRANG)
+            .setBroadcast(false)
+            .setPosition(0, height*10/80)
+            .setSize(width/10, height/36)
+            .setRange(1, 5)
+            .setValue(1)
+            .setGroup(l7)
+            .setFont(UIFont)
+            .setNumberOfTickMarks(5)
+            .showTickMarks(false)
+            .setBroadcast(true);   
 }
 
 // Event getController for Radio Button scale

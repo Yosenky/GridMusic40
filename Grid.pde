@@ -56,8 +56,6 @@ public class Grid {
 
   // initGrid - create a Block {currPos, (blockWidth, blockHeight), notes, baseDuration} for each Grid pos
   private void initGrid() {
-    //blockWidth  = (width*18/40)/grid.length;
-    //blockHeight = (height*20/36)/grid[0].length;
     PVector SIZE = new PVector(blockWidth, blockHeight);
     for (int col=0; col < grid.length; col++) {
       for (int row=0; row < grid[col].length; row++) {
@@ -122,6 +120,7 @@ public class Grid {
     }
   }
 
+  // 
   void checkGrid(int x, int y) {
     PVector p=new PVector(x, y);
     for (int i=0; i<grid.length; i++) {
@@ -337,10 +336,31 @@ public class Grid {
     return grid;
   }
   
+  // Gets the Y coordinates of all lit notes
+  int[] getLitNotes() {
+    int[] litNotesYCoordinates = new int[grid.length];
+    for (int i=0; i<grid.length; i++) {
+      for(int j = 0; j < grid[0].length; j++){
+        litNotesYCoordinates[i] = 0; // Initialize to 0 in case no notes are lit
+        if(grid[i][j].isset){
+          litNotesYCoordinates[i] = j;
+          j = grid[0].length;
+        }
+      }
+    }
+    return litNotesYCoordinates;
+  }
+  
   // Sends info to the GameOfLifeCompositions program
   void sendInfo(){
-    OscMessage myMessage = new OscMessage("/test");
-    myMessage.add(123);
+    OscMessage myMessage = new OscMessage("Composition Info");
+    myMessage.add(grid.length); // Grid length
+    myMessage.add(grid[0].length); // Grid height
+    int[] litNotesYCoordinates = getLitNotes();
+    for(int i = 0; i < litNotesYCoordinates.length; i++){
+      println("Note[" + i + "] = " + litNotesYCoordinates[i]);
+      myMessage.add(litNotesYCoordinates[i]);
+    }
     oscP5.send(myMessage, gameOfLifeCompositionsAddress);
   }
 }

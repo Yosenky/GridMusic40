@@ -40,7 +40,7 @@ class Block {
   }
 
   boolean isSet() {
-    return isset;
+    return this.isset;
   }
 
   // Attempting to change color of block that is active(currently playing)
