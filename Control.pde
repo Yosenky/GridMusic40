@@ -55,53 +55,53 @@ void setupControls() {
   //
   // Create control groups
   //
-  ControlGroup l1 = controlP5.addGroup("Controls", width*1/40 , height*2/40);
-  l1.setBackgroundHeight((height*34/40)/2);
-  l1.setWidth(width/6);
-  l1.setBarHeight(height/40);
+  ControlGroup generalControls = controlP5.addGroup("Controls", width*1/40 , height*2/40);
+  generalControls.setBackgroundHeight((height*34/40)/2);
+  generalControls.setWidth(width/6);
+  generalControls.setBarHeight(height/40);
   
-  ControlGroup l2 = controlP5.addGroup("scales/modes", width*10/40, height*2/40);
-  l2.setBackgroundHeight((height*34/40)/2);
-  l2.setWidth(width/6);
-  l2.setBarHeight(height/40);
+  ControlGroup scaleModeControls = controlP5.addGroup("scales/modes", width*10/40, height*2/40);
+  scaleModeControls.setBackgroundHeight((height*34/40)/2);
+  scaleModeControls.setWidth(width/6);
+  scaleModeControls.setBarHeight(height/40);
   
-  ControlGroup l3 = controlP5.addGroup("Generate", width/40, 19*height/40);
-  l3.setBackgroundHeight((height*16/40)/2);
-  l3.setWidth(width/6);
-  l3.setBarHeight(height/40);
+  ControlGroup generationControls = controlP5.addGroup("Generate", width/40, 19*height/40);
+  generationControls.setBackgroundHeight((height*16/40)/2);
+  generationControls.setWidth(width/6);
+  generationControls.setBarHeight(height/40);
   
-  ControlGroup l4 = controlP5.addGroup("save", width*10/40, height*33/40);
-  l4.setBackgroundHeight((height*16/40)/2);
-  l4.setWidth(width/6);
-  l4.setBarHeight(height/40);
+  ControlGroup savingControls = controlP5.addGroup("save", width*10/40, height*33/40);
+  savingControls.setBackgroundHeight((height*16/40)/2);
+  savingControls.setWidth(width/6);
+  savingControls.setBarHeight(height/40);
   
-  ControlGroup l5 = controlP5.addGroup("adsr", width*10/40, height*21/40);
-  l5.setBackgroundHeight((height*16/40)/2);
-  l5.setWidth(width/6);
-  l5.setBarHeight(height/40);
+  ControlGroup soundSettingsControls = controlP5.addGroup("adsr", width*10/40, height*21/40);
+  soundSettingsControls.setBackgroundHeight((height*16/40)/2);
+  soundSettingsControls.setWidth(width/6);
+  soundSettingsControls.setBarHeight(height/40);
   
-  ControlGroup l6 = controlP5.addGroup("waveform", width/40, 26*height/40);
-  l6.setBackgroundHeight((height*16/40)/2);
-  l6.setWidth(width/6);
-  l6.setBarHeight(height/40);
+  ControlGroup waveformControls = controlP5.addGroup("waveform", width/40, 26*height/40);
+  waveformControls.setBackgroundHeight((height*16/40)/2);
+  waveformControls.setWidth(width/6);
+  waveformControls.setBarHeight(height/40);
   
-  ControlGroup l7 = controlP5.addGroup("Noise Generation", width/40, 32*height/40);
-  l7.setBackgroundHeight((height*16/40)/2);
-  l7.setWidth(width/6);
-  l7.setBarHeight(height/40);
+  ControlGroup noiseGenerationControls = controlP5.addGroup("Noise Generation", width/40, 32*height/40);
+  noiseGenerationControls.setBackgroundHeight((height*16/40)/2);
+  noiseGenerationControls.setWidth(width/6);
+  noiseGenerationControls.setBarHeight(height/40);
   
   
   //
-  // GROUP L1
+  // GROUP GENERALCONTROLS
   //
   // Add controls to CNTRLS section
   
   // A bang controller triggers an event when pressed  
   // Constructor format for bang: (object, index, name, xCoord, yCoord, width, height)
   // To my knowledge, the object parameter can refer to literally any object and it will work
-  controlP5.addBang(controlP5, PLY, PLY, 0         , 0, width/36, width/36).setGroup(l1).setFont(UIFont);
-  controlP5.addBang(controlP5, CLR, CLR, width*3/72, 0, width/36, width/36).setGroup(l1).setFont(UIFont);
-  controlP5.addBang(controlP5, EXP, EXP, width*6/72, 0, width/36, width/36).setGroup(l1).setFont(UIFont);
+  controlP5.addBang(controlP5, PLY, PLY, 0         , 0, width/36, width/36).setGroup(generalControls).setFont(UIFont);
+  controlP5.addBang(controlP5, CLR, CLR, width*3/72, 0, width/36, width/36).setGroup(generalControls).setFont(UIFont);
+  controlP5.addBang(controlP5, EXP, EXP, width*6/72, 0, width/36, width/36).setGroup(generalControls).setFont(UIFont);
   
   // New Constructor format for toggle(object, index, name, defaultValue, xCoord, yCoord, width, height)
   // When using the new constructor, the program breaks, we will continue to use the deprecated constructors for now
@@ -118,7 +118,7 @@ void setupControls() {
              .setValue( true)
              .setPosition(width*2/72, height*7/80)
              .setSize(width/36,width/36)
-             .setGroup(l1)
+             .setGroup(generalControls)
              .setColorForeground(hoveredToggleColor)
              .setColorBackground(inactiveToggleColor)
              .setColorActive(activeToggleColor)
@@ -130,7 +130,7 @@ void setupControls() {
              .setValue(false)
              .setPosition(width*6/72, height*7/80)
              .setSize(width/36,width/36)
-             .setGroup(l1)
+             .setGroup(generalControls)
              .setColorForeground(hoveredToggleColor)
              .setColorBackground(inactiveToggleColor)
              .setColorActive(activeToggleColor)
@@ -144,7 +144,7 @@ void setupControls() {
            .setSize(width/10, height/36)
            .setRange(1 , 4)
            .setValue(2)
-           .setGroup(l1)
+           .setGroup(generalControls)
            .setFont(UIFont)
            .setNumberOfTickMarks(4)
            .showTickMarks(false)
@@ -157,7 +157,7 @@ void setupControls() {
              .setSize(width/10, height/36)
              .setRange(1,240)
              .setValue(120)
-             .setGroup(l1)
+             .setGroup(generalControls)
              .setFont(UIFont)
              .setNumberOfTickMarks(240)
              .showTickMarks(false)
@@ -170,7 +170,7 @@ void setupControls() {
              .setSize(width/10, height/36)
              .setRange(0 , 16)
              .setValue(8)
-             .setGroup(l1)
+             .setGroup(generalControls)
              .setFont(UIFont)
              .setNumberOfTickMarks(17)
              .showTickMarks(false)
@@ -182,7 +182,7 @@ void setupControls() {
              .setSize(width/10, height/36)
              .setRange(8 , 100)
              .setValue(8)
-             .setGroup(l1)
+             .setGroup(generalControls)
              .setFont(UIFont)
              .setNumberOfTickMarks(93)
              .showTickMarks(false)
@@ -194,7 +194,7 @@ void setupControls() {
              .setSize(width/10, height/36)
              .setRange(50, 150)
              .setValue(tempo)
-             .setGroup(l1)
+             .setGroup(generalControls)
              .setFont(UIFont)
              .setNumberOfTickMarks(101)
              .showTickMarks(false)
@@ -202,7 +202,7 @@ void setupControls() {
   
   
   //
-  // GROUP L2
+  // GROUP SCALEMODECONTROLS
   //
   // Add radio buttons to SCALE/MODE section
   // addRadio constructor format (name, xCoord, yCoord)
@@ -222,7 +222,7 @@ void setupControls() {
   r.addItem("G", 11).setSize(width/60,width/60);
   r.addItem("G#",12).setSize(width/60,width/60);
   r.activate(0);
-  r.setGroup(l2);
+  r.setGroup(scaleModeControls);
   
   // setSpacingColumn adjusts spacing between columns
   // setItemsPerRow sets the number of items per row
@@ -255,7 +255,7 @@ void setupControls() {
   r2.addItem("AEO",     19).setSize(width/60,width/60);
   r2.addItem("LOC",     20).setSize(width/60,width/60);
   r2.activate(0);
-  r2.setGroup(l2);
+  r2.setGroup(scaleModeControls);
   
   
   //
@@ -269,7 +269,7 @@ void setupControls() {
            .setBroadcast(false)
            .setPosition(0             , height/80)
            .setSize(width/48, width/48)
-           .setGroup(l3)
+           .setGroup(generationControls)
            .setFont(SmallerUIFont)
            .setBroadcast(true);   
   // Random walking generation
@@ -277,7 +277,7 @@ void setupControls() {
            .setBroadcast(false)
            .setPosition(width*3/72, height/80)
            .setSize(width/48, width/48)
-           .setGroup(l3)
+           .setGroup(generationControls)
            .setFont(SmallerUIFont)
            .setBroadcast(true);  
   // Random walking interval generation
@@ -285,7 +285,7 @@ void setupControls() {
            .setBroadcast(false)
            .setPosition(width*7/72, height/80)
            .setSize(width/48, width/48)
-           .setGroup(l3)
+           .setGroup(generationControls)
            .setFont(SmallerUIFont)
            .setBroadcast(true);   
   // Weighted random generation
@@ -293,7 +293,7 @@ void setupControls() {
            .setBroadcast(false)
            .setPosition(0, height*6/80)
            .setSize(width/48, width/48)
-           .setGroup(l3)
+           .setGroup(generationControls)
            .setFont(SmallerUIFont)
            .setBroadcast(true); 
   //controlP5.addBang(controlP5, HPYBD  , HPYBD  , 0             , height*8/80, width/36, width/36).setGroup(l3).setFont(UIFont);  // Happy Birthday Button
@@ -304,17 +304,17 @@ void setupControls() {
   // 
   // Add buttons to SAVE section
   // addButton constructor syntax (object, index, name, value, xCoord, yCoord, width, height)
-  //controlP5.addButton(controlP5, MEL   , MEL   , 1.0, 0         , width/96   , width*3/36, height*2/36).setGroup(l4);
-  //controlP5.addButton(controlP5, SAVEXP, SAVEXP, 2.0, width*7/72, width/96   , width*3/36, height*2/36).setGroup(l4);
-  //controlP5.addButton(controlP5, "LOAD", "LOAD", 1.0, 0         , height*3/36, width*3/36, height*2/36).setGroup(l4);
-  //controlP5.addTextfield("FILE").setPosition(width*7/72,height*3/36).setText("song.seq").setSize(width*3/36,height/36).setGroup(l4);
+  //controlP5.addButton(controlP5, MEL   , MEL   , 1.0, 0         , width/96   , width*3/36, height*2/36).setGroup(savingControls);
+  //controlP5.addButton(controlP5, SAVEXP, SAVEXP, 2.0, width*7/72, width/96   , width*3/36, height*2/36).setGroup(savingControls);
+  //controlP5.addButton(controlP5, "LOAD", "LOAD", 1.0, 0         , height*3/36, width*3/36, height*2/36).setGroup(savingControls);
+  //controlP5.addTextfield("FILE").setPosition(width*7/72,height*3/36).setText("song.seq").setSize(width*3/36,height/36).setGroup(savingControls);
   
   // Send to game of life
   controlP5.addBang(STGOL)
            .setBroadcast(false)
            .setPosition(0, width/96)
            .setSize(width*3/36, height*2/36)
-           .setGroup(l4)
+           .setGroup(savingControls)
            .setFont(UIFont)
            .setBroadcast(true);   
   //
@@ -328,28 +328,28 @@ void setupControls() {
                .setPosition(0, 0)
                .setValue(0.01)
                .setDragDirection(Knob.VERTICAL)
-               .setGroup(l5);
+               .setGroup(soundSettingsControls);
   controlP5.addKnob("dly") //
                .setRange(0.01,1)
                .setRadius(height/36)
                .setPosition(width*3/48,0)
                .setValue(0.05)
                .setDragDirection(Knob.VERTICAL)
-               .setGroup(l5);
+               .setGroup(soundSettingsControls);
   controlP5.addKnob("sus")
                .setRange(0,1)
                .setRadius(height/36)
                .setPosition(0,height/12)
                .setValue(0.5)
                .setDragDirection(Knob.VERTICAL)
-               .setGroup(l5);
+               .setGroup(soundSettingsControls);
   controlP5.addKnob("rel")
                .setRange(0.01,3)
                .setRadius(height/36)
                .setPosition(width*3/48,height/12)
                .setValue(0.5)
                .setDragDirection(Knob.VERTICAL)
-               .setGroup(l5);
+               .setGroup(soundSettingsControls);
   
   //
   // GROUP L6
@@ -369,7 +369,7 @@ void setupControls() {
   r3.addItem(SAW,      3).setSize(width/60,width/60);
   r3.addItem(QTR,      4).setSize(width/60,width/60);
   r3.activate(0);
-  r3.setGroup(l6);  
+  r3.setGroup(waveformControls);  
   
   
   //
@@ -383,7 +383,7 @@ void setupControls() {
             .setSize(width/10, height/36)
             .setRange(1, 20)
             .setValue(1)
-            .setGroup(l7)
+            .setGroup(noiseGenerationControls)
             .setFont(UIFont)
             .setNumberOfTickMarks(20)
             .showTickMarks(false)
@@ -393,7 +393,7 @@ void setupControls() {
            .setBroadcast(false)
            .setPosition(0, height*4/80)
            .setSize(width/48, width/48)
-           .setGroup(l7)
+           .setGroup(noiseGenerationControls)
            .setFont(SmallerUIFont)
            .setBroadcast(true);
   // Pink noise generation        
@@ -401,7 +401,7 @@ void setupControls() {
            .setBroadcast(false)
            .setPosition(width*3/48, height*4/80)
            .setSize(width/48, width/48)
-           .setGroup(l7)
+           .setGroup(noiseGenerationControls)
            .setFont(SmallerUIFont)
            .setBroadcast(true);              
   // Noise range slider    
@@ -411,7 +411,7 @@ void setupControls() {
             .setSize(width/10, height/36)
             .setRange(1, 5)
             .setValue(1)
-            .setGroup(l7)
+            .setGroup(noiseGenerationControls)
             .setFont(UIFont)
             .setNumberOfTickMarks(5)
             .showTickMarks(false)
