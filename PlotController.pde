@@ -1,10 +1,9 @@
 // Controller for the plot display
+// SURF 2022 jrkm
 
 class PlotController{
   
-  public PlotController(){
-  }
-  
+  public PlotController(){} // Empty constructor
   
   void clearPlot(){
     // getPoints() returns a GPoints array for the graph

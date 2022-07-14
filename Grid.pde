@@ -351,16 +351,20 @@ public class Grid {
     return litNotesYCoordinates;
   }
   
+  
   // Sends info to the GameOfLifeCompositions program
   void sendInfo(){
     OscMessage myMessage = new OscMessage("Composition Info");
     myMessage.add(grid.length); // Grid length
     myMessage.add(grid[0].length); // Grid height
     int[] litNotesYCoordinates = getLitNotes();
-    for(int i = 0; i < litNotesYCoordinates.length; i++){
-      println("Note[" + i + "] = " + litNotesYCoordinates[i]);
-      myMessage.add(litNotesYCoordinates[i]);
+    for(int i = 0; i < adsr.length; i++){
+      myMessage.add(adsr[i]); // ADSR values
     }
-    oscP5.send(myMessage, gameOfLifeCompositionsAddress);
+    for(int i = 0; i < litNotesYCoordinates.length; i++){
+      myMessage.add(litNotesYCoordinates[i]); // Y coordinates for the notes
+    }
+
+    oscP5.send(myMessage, gameOfLifeCompositionsAddress); // Sends message
   }
 }

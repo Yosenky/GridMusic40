@@ -108,7 +108,7 @@ void setup() {
   
   //registerMethod("pre",this);
 
-  plot = new GPlot(this,width*20/40, height*22/40, width*15/40, height*16/40);
+  plot = new GPlot(this,width*20/40, height*24/40, width*15/40, height*16/40);
   
   noiseG = new NoiseGeneration(grid);
   
